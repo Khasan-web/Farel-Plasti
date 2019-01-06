@@ -1,0 +1,9 @@
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-weight: regular;
+  font-family: sans-serif;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }

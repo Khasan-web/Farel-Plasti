@@ -1,0 +1,50 @@
+@import "app/sass/parts/vars"
+
+.search 
+    display: none
+
+.search-submit
+    position: absolute
+    top: 50%
+    transform: translate(0, -50%)
+    right: 1rem
+    display: none
+
+nav
+    z-index: 100
+    position: fixed
+    width: 100%
+    color: $text
+
+.brand-logo
+    line-height: 70px
+
+.categories-dropdown
+    width: 40%!important
+
+.search
+    top: 64px
+    z-index: 90
+
+#search::placeholder 
+    color: #ffffff
+
+.search 
+    display: none
+
+.search-mobile
+    float: right
+    position: relative
+    z-index: 1
+    height: 56px
+    margin: 0 18px
+
+#nav-mobile
+    z-index: 100000
+
+.drag-target
+    width: 25px
+
+@media (max-width: 768px) 
+    .search
+        top: 55px
