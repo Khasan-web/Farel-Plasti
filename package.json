@@ -8,7 +8,9 @@
   },
   "author": "Shadiyarov Khasan",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "@material/textfield": "^0.42.1"
+  },
   "devDependencies": {
     "bower": "^1.8.4",
     "browser-sync": "^2.26.3",

@@ -3,7 +3,7 @@
 
 <head>
 	<?php require "includes/head.php";?>
-	<title>Product name | Farel Plastic</title>
+	<title>Contact Us | Farel Plastic</title>
 	<style>
 		.card.horizontal .card-image {
 			max-width: 70% !important;
@@ -17,7 +17,7 @@
 
 	<section id="contact">
 		<div class="container">
-			<h2 class="main-title">Contact Us</h2>
+			<h2 class="main-title"><?= $contact?></h2>
 			<div class="underline red darken-2"></div>
 			<div class="row">
 				<div class="col l10 s12 offset-l1 my-5">

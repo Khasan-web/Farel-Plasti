@@ -12,9 +12,13 @@ $(document).ready(function(){
     )
     wow.init();
 
-    var sliderHeight = 720
-    if ($(window).width() <= 768) {
+    var sliderHeight;
+    if ($(window).width() <= 600) {
         sliderHeight = 500
+    }
+
+    if ($(window).width() > 600) {
+        sliderHeight = 720
     }
 
     $('.slider').slider(

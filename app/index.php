@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= $_GET['lang']?>">
 
 <head>
 	<?php require "includes/head.php";?>
@@ -13,12 +13,12 @@
 		<ul class="slides center-align z-depth-1">
 			<li class="">
 				<div class="row">
-					<div class="col m8 hide-on-med-and-down">
+					<div class="col l8 m12 hide-on-small-and-down">
 						<img class="wow slideInLeft" src="img/home/slider/salat.jpg" alt="">
 					</div>
-					<div class="col m4 s12 content amber">
+					<div class="col l4 m12 s12 content amber">
 						<h2 class="white-text">Test</h2>
-						<p class="white-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, accusantium laudantium. Cumque</p>
+						<p class="white-text"><?= $indexCard1?></p>
 						<p class="white-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 						<button class="btn rounded red waves-effect">Get more!</button>
 					</div>
@@ -26,7 +26,7 @@
 			</li>
 			<li class="">
 				<div class="row">
-					<div class="col m8 hide-on-med-and-down">
+					<div class="col m8 hide-on-small-and-down">
 						<img class="wow slideInLeft" src="img/home/slider/salat.jpg" alt="">
 					</div>
 					<div class="col m4 content red">
@@ -39,7 +39,7 @@
 			</li>
 			<li class="">
 				<div class="row">
-					<div class="col m8 hide-on-med-and-down">
+					<div class="col m8 hide-on-small-and-down">
 						<img class="wow slideInLeft" src="img/home/slider/salat.jpg" alt="">
 					</div>
 					<div class="col m4 content indigo darken-4">
@@ -61,7 +61,7 @@
 					<div class="card amber z-depth-1 white-text darken-1">
 						<div class="card-content">
 							<i class="material-icons amber-text">add</i>
-							<span class="card-title">Широкий выбор</span>
+							<span class="card-title"><?= $homeCardTitle1?></span>
 							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.  </p>
 						</div>
 					</div>
@@ -70,7 +70,7 @@
 					<div class="card red z-depth-1 white-text darken-2">
 						<div class="card-content">
 							<i class="material-icons red-text">thumb_up_alt</i>
-							<span class="card-title">Опыт работы</span>
+							<span class="card-title"><?= $homeCardTitle2?></span>
 							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.  </p>
 						</div>
 					</div>
@@ -79,7 +79,7 @@
 					<div class="card amber z-depth-1 white-text darken-1">
 						<div class="card-content">
 							<i class="material-icons amber-text">layers</i>
-							<span class="card-title">Отличное качество</span>
+							<span class="card-title"><?= $homeCardTitle3?></span>
 							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.  </p>
 						</div>
 					</div>

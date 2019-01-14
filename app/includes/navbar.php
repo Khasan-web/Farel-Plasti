@@ -1,3 +1,14 @@
+<!-- Getting categories -->
+<?php
+
+$categories = mysqli_query($con, "SELECT * FROM `category_" . $_GET['lang'] . "`");
+$catsArr = array();
+while ($catsData = mysqli_fetch_assoc($categories)) {
+	$catsArr[] = $catsData;
+}
+
+?>
+
 <!-- navbar -->
 <nav class="amber px-2">
 	<div class="nav-wrapper">
@@ -12,52 +23,33 @@
 		</a>
 		<ul class="right hide-on-med-and-down">
 			<li class="waves-effect">
-				<a href="/">Home</a>
+				<a href="/?lang=<?= $_GET['lang'];?>"><?= $home?></a>
 			</li>
 			<li class="waves-effect">
-				<a href="about.php">About</a>
+				<a href="/about.php?lang=<?= $_GET['lang'];?>"><?= $about?></a>
 			</li>
-			<li>
+			<li class="cats-item">
 				<a href="" class="dropdown-trigger" data-target="categories">
-					Categories
+					<?= $cats?>
 				</a>
 				<ul id="categories" class="dropdown-content categories-dropdown">
 					<div class="row mb-0">
-						<div class="col s6 p-0">
-							<li>
-								<a href="?category=" class="black-text">Category 1</a>
-							</li>
-						</div>
-						<div class="col s6 p-0">
-							<li>
-								<a href="?category=" class="black-text">Category 2</a>
-							</li>
-						</div>
-						<div class="col s6 p-0">
-							<li>
-								<a href="?category=" class="black-text">Category 3</a>
-							</li>
-						</div>
-						<div class="col s6 p-0">
-							<li>
-								<a href="?category=" class="black-text">Category 4</a>
-							</li>
-						</div>
-						<div class="col s6 p-0">
-							<li>
-								<a href="?category=" class="black-text">Category 5</a>
-							</li>
-						</div>
-						<div class="col s6 p-0">
-							<li>
-								<a href="?category=" class="black-text">Category 6</a>
-							</li>
-						</div>
+					<?php
+						foreach ($catsArr as $cat) {
+							?>
+								<div class="col s12 p-0">
+									<li>
+										<a href="category.php/?category=<?= $cat['id']?>&lang=<?= $_GET['lang'];?>" class="black-text"><?= $cat['name']?></a>
+									</li>
+								</div>
+							<?
+						}
+					?>
 					</div>
 				</ul>
 			</li>
 			<li class="waves-effect">
-				<a href="contact.php">Contact Us</a>
+				<a href="/contact.php?lang=<?= $_GET['lang'];?>"><?= $contact?></a>
 			</li>
 			<li class="open-search waves-effect">
 				<a>
@@ -71,15 +63,18 @@
 				<ul id="lang" class="dropdown-content">
 					<li>
 						<a href="?lang=ru" class="black-text">
-							<img width="20" src="img/langs/ru.png" class="mr-3" alt=""> Ru</a>
+							<img width="20" src="img/langs/ru.png" class="mr-3" alt=""> Ru
+						</a>
 					</li>
 					<li>
 						<a href="?lang=en" class="black-text">
-							<img width="20" src="img/langs/eng.png" class="mr-3" alt=""> En</a>
+							<img width="20" src="img/langs/eng.png" class="mr-3" alt=""> En
+						</a>
 					</li>
 					<li>
 						<a href="?lang=uz" class="black-text">
-							<img width="20" src="img/langs/uz.png" class="mr-3" alt=""> Uz</a>
+							<img width="20" src="img/langs/uz.png" class="mr-3" alt=""> Uz
+						</a>
 					</li>
 				</ul>
 			</li>
@@ -105,17 +100,17 @@
 		</div>
 	</li>
 	<li class="waves-effect w-100">
-        <a href="sass.html"><i class="material-icons">home</i>Home</a>
+        <a href="/?lang=<?= $_GET['lang']?>"><i class="material-icons">home</i><?= $home?></a>
 	</li><br>
 	<li class="waves-effect w-100">
-        <a href="badges.html"><i class="material-icons">account_circle</i>About</a>
+        <a href="about.php?lang=<?= $_GET['lang']?>"><i class="material-icons">account_circle</i><?= $about?></a>
 	</li><br>
 	<li class="waves-effect w-100">
-        <a href="mobile.html"><i class="material-icons">phone</i>Contact Us</a>
+        <a href="contact.php?lang=<?= $_GET['lang']?>"><i class="material-icons">phone</i><?= $contact?></a>
 	</li><br>
 	<li class="w-100">
 		<a href="" class="dropdown-trigger" data-target="lang2">
-			<i class="material-icons">language</i>Language
+			<i class="material-icons">language</i><?= $language?>
 		</a>
 		<ul id="lang2" class="dropdown-content">
 			<li>
@@ -151,7 +146,7 @@
 		<div class="divider"></div>
 	</li>
 	<li>
-		<a class="subheader">Categories</a>
+		<a class="subheader"><?= $cats?></a>
 	</li>
 	<li>
 		<a href="#!">Category 1</a>
@@ -173,13 +168,13 @@
 <!-- search -->
 <nav class="amber search">
 	<div class="nav-wrapper">
-		<form action="search-result.php" method="post">
+		<form action="search.php" method="get">
 			<div class="input-field">
-				<input id="search" type="search" required style placeholder="Search product">
+				<input id="search" name="search" type="search" required style placeholder="<?= $searchPlaceholder?>">
 				<label class="label-icon" for="search">
 					<i class="material-icons">search</i>
 				</label>
-				<button type="submit" name="search" class="btn waves-amber amber waves-effect z-depth-0 search-submit">Search</button>
+				<button type="submit" class="btn waves-amber amber waves-effect z-depth-0 search-submit">Search</button>
 			</div>
 		</form>
 	</div>
