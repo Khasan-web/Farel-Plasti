@@ -15,11 +15,27 @@
         }
     }
 
-    $products = mysqli_query($con, "SELECT * FROM `product_" . $_GET['lang'] . "` WHERE `name` LIKE '%{$searchStr}%'");
-    $categories = mysqli_query($con, "SELECT * FROM `category_" . $_GET['lang'] . "`");
-    $catsArr = array();
+    if(preg_match("/^[a-zA-Z0-9]+$/", $searchStr)) {
+        $products = mysqli_query($con, "SELECT * FROM `product_en` WHERE `name` LIKE '%{$searchStr}%'");
+        if (!mysqli_num_rows($products)) {
+            $products = mysqli_query($con, "SELECT * FROM `product_uz` WHERE `name` LIKE '%{$searchStr}%'");
+            $categories = mysqli_query($con, "SELECT * FROM `category_uz`");
+        } else {
+            $categories = mysqli_query($con, "SELECT * FROM `category_en`");
+        }
+    } else {
+        $products = mysqli_query($con, "SELECT * FROM `product_ru` WHERE `name` LIKE '%{$searchStr}%'");
+        $categories = mysqli_query($con, "SELECT * FROM `category_ru`");
+    }
+
+    $prodArr = array();
+    while ($prodData = mysqli_fetch_assoc($products)) {
+        $prodArr[] = $prodData;
+    }
+
+    $catArr = array();
     while ($catsData = mysqli_fetch_assoc($categories)) {
-        $catsArr[] = $catsData;
+        $catArr[] = $catsData;
     }
     
     ?>
@@ -45,20 +61,23 @@
                         <div class="row mt-5 pt-5 center-align">
                             <?php
                                 
-                                while ($product = mysqli_fetch_assoc($products)) {
+                                foreach ($prodArr as $product) {
 
                                     ?>
 
-                                        <div class="col s12 l3 m4 product">
+                                    <div class="col s12 l3 m4 product">
+                                        <a href="product.php?id=<?= $product['id']?>">
                                             <div class="card z-depth-1 waves-effect">
-                                                <div class="p-5 pb-0">
-                                                    <img src="img/home/testImg/DS_000063.jpg" alt="" class="w-100">
+                                                <div class="p-5 cardImg pb-0 valign-wrapper">
+                                                <img src="img/products/<?php $preview = explode(", ", $product['imgs']);echo $preview[0];?>" alt="" class="w-100">
                                                 </div>
                                                 <div class="card-content">
-                                                    <span class="card-title name mb-0"><?= $product['name']?></span>
+                                                    <span class="card-title name mb-0">
+                                                        <?= $product['name'];?>
+                                                    </span>
                                                     <p class="category">
                                                     <?php
-                                                        foreach ($catsArr as $cat) {
+                                                        foreach ($catArr as $cat) {
                                                             if ($cat['id'] == $product['category_id']) {
                                                                 echo $cat['name'];
                                                             }
@@ -67,9 +86,10 @@
                                                     </p>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </a>
+                                    </div>
 
-                                    <?
+                                <?
 
                                 }
 
@@ -88,9 +108,6 @@
 	</section>
 
 	<?php require "includes/footer.php"?>
-
-<script src="js/libs.min.js"></script>
-<script src="js/common.js"></script>
 </body>
 
-</html>
+</html>`    

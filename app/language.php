@@ -3,7 +3,17 @@
 // default
 
 if (!isset($_GET['lang'])) {
-    $_GET['lang'] = 'en';
+    if (!isset($_COOKIE['lang'])) {
+        $_GET['lang'] = 'en';
+    }
+}
+
+// active language
+
+if (!$_GET['lang']) {
+    $activeLang = $_COOKIE['lang'];
+} else {
+    $activeLang = $_GET['lang'];
 }
 
 // if lang value is not appropirate for the options
@@ -15,10 +25,12 @@ if ($_GET['lang'] != 'ru') {
 }
 
 
-
 // english
 
-if ($_GET['lang'] == 'en') {
+if ($_GET['lang'] == 'en' || $_COOKIE['lang'] == 'en') {
+
+    // common
+    $qu = "som";
     
     // navbar
     $home = "Home";
@@ -37,12 +49,14 @@ if ($_GET['lang'] == 'en') {
     $aboutTitle = "About Farel Plastic";
     $aboutCompany = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. <br> The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters";
 
-
 }
 
 // russian
 
-if ($_GET['lang'] == 'ru') {
+if ($_GET['lang'] == 'ru' || $_COOKIE['lang'] == 'ru') {
+
+    // common
+    $qu = "сум";
     
     // navbar
     $home = "Главная";
@@ -66,7 +80,10 @@ if ($_GET['lang'] == 'ru') {
 
 // uzbek
 
-if ($_GET['lang'] == 'uz') {
+if ($_GET['lang'] == 'uz' || $_COOKIE['lang'] == 'uz') {
+
+    // common
+    $qu = "so'm";
     
     // navbar
     $home = "Asosiy";

@@ -18,15 +18,15 @@ while ($catsData = mysqli_fetch_assoc($categories)) {
 		<a href="#" data-target="nav-mobile" class="sidenav-trigger">
 			<i class="material-icons">menu</i>
         </a>
-        <a class="hide-on-med-and-up search-mobile open-search">
+        <a class="show-on-medium-and-down search-mobile open-search">
 			<i class="material-icons">search</i>
 		</a>
 		<ul class="right hide-on-med-and-down">
 			<li class="waves-effect">
-				<a href="/?lang=<?= $_GET['lang'];?>"><?= $home?></a>
+				<a href="/"><?= $home?></a>
 			</li>
 			<li class="waves-effect">
-				<a href="/about.php?lang=<?= $_GET['lang'];?>"><?= $about?></a>
+				<a href="/about.php"><?= $about?></a>
 			</li>
 			<li class="cats-item">
 				<a href="" class="dropdown-trigger" data-target="categories">
@@ -39,7 +39,7 @@ while ($catsData = mysqli_fetch_assoc($categories)) {
 							?>
 								<div class="col s12 p-0">
 									<li>
-										<a href="category.php/?category=<?= $cat['id']?>&lang=<?= $_GET['lang'];?>" class="black-text"><?= $cat['name']?></a>
+										<a href="category.php?category=<?= $cat['id']?>" class="black-text"><?= $cat['name']?></a>
 									</li>
 								</div>
 							<?
@@ -49,7 +49,7 @@ while ($catsData = mysqli_fetch_assoc($categories)) {
 				</ul>
 			</li>
 			<li class="waves-effect">
-				<a href="/contact.php?lang=<?= $_GET['lang'];?>"><?= $contact?></a>
+				<a href="/contact.php"><?= $contact?></a>
 			</li>
 			<li class="open-search waves-effect">
 				<a>
@@ -114,30 +114,30 @@ while ($catsData = mysqli_fetch_assoc($categories)) {
 		</a>
 		<ul id="lang2" class="dropdown-content">
 			<li>
-				<a href="?lang=ru" class="black-text">
+				<a href="&lang=ru" class="black-text">
 					<img width="20" src="img/langs/ru.png" class="mr-3" alt=""> Ru</a>
 			</li>
 			<li>
-				<a href="?lang=en" class="black-text">
+				<a href="&lang=en" class="black-text">
 					<img width="20" src="img/langs/eng.png" class="mr-3" alt=""> En</a>
 			</li>
 			<li>
-				<a href="?lang=uz" class="black-text">
+				<a href="&lang=uz" class="black-text">
 					<img width="20" src="img/langs/uz.png" class="mr-3" alt=""> Uz</a>
 			</li>
 		</ul>
 	</li>
 	<ul id="lang" class="dropdown-content">
 		<li>
-			<a href="?lang=ru" class="black-text">
+			<a href="&lang=ru" class="black-text">
 				<img width="20" src="img/langs/ru.png" class="mr-3" alt=""> Ru</a>
 		</li>
 		<li>
-			<a href="?lang=en" class="black-text">
+			<a href="&lang=en" class="black-text">
 				<img width="20" src="img/langs/eng.png" class="mr-3" alt=""> En</a>
 		</li>
 		<li>
-			<a href="?lang=uz" class="black-text">
+			<a href="&lang=uz" class="black-text">
 				<img width="20" src="img/langs/uz.png" class="mr-3" alt=""> Uz</a>
 		</li>
 	</ul>
@@ -168,7 +168,7 @@ while ($catsData = mysqli_fetch_assoc($categories)) {
 <!-- search -->
 <nav class="amber search">
 	<div class="nav-wrapper">
-		<form action="search.php" method="get">
+		<form action="search.php?lang=<?= $_GET['lang']?>" method="get">
 			<div class="input-field">
 				<input id="search" name="search" type="search" required style placeholder="<?= $searchPlaceholder?>">
 				<label class="label-icon" for="search">

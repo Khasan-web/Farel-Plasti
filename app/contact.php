@@ -94,9 +94,6 @@
 	</section>
 
 	<?php require "includes/footer.php"?>
-
-	<script src="js/libs.min.js"></script>
-	<script src="js/common.js"></script>
 </body>
 
 </html>
