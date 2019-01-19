@@ -13,7 +13,6 @@
 	<!-- get popular products -->
 	<?php
 		$products = mysqli_query($con, "SELECT * FROM `product_" . $activeLang . "` WHERE `hit` = '1'");
-
 		$prodArr = array();
 		while ($prodData = mysqli_fetch_assoc($products)) {
 			$prodArr[] = $prodData;

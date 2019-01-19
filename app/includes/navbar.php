@@ -1,6 +1,5 @@
-<!-- Getting categories -->
 <?php
-
+// get categories
 $categories = mysqli_query($con, "SELECT * FROM `category_" . $_GET['lang'] . "`");
 $catsArr = array();
 while ($catsData = mysqli_fetch_assoc($categories)) {
@@ -61,21 +60,20 @@ while ($catsData = mysqli_fetch_assoc($categories)) {
 					<i class="material-icons">language</i>
 				</a>
 				<ul id="lang" class="dropdown-content">
-					<li>
-						<a href="?lang=ru" class="black-text">
-							<img width="20" src="img/langs/ru.png" class="mr-3" alt=""> Ru
-						</a>
-					</li>
-					<li>
-						<a href="?lang=en" class="black-text">
-							<img width="20" src="img/langs/eng.png" class="mr-3" alt=""> En
-						</a>
-					</li>
-					<li>
-						<a href="?lang=uz" class="black-text">
-							<img width="20" src="img/langs/uz.png" class="mr-3" alt=""> Uz
-						</a>
-					</li>
+					<form action="" method="get">
+						<li>
+							<a href="&lang=ru" class="black-text">
+							<img width="20" src="img/langs/ru.png" class="mr-3" alt=""> Ru</a>
+						</li>
+						<li>
+							<a href="&lang=en" class="black-text">
+							<img width="20" src="img/langs/eng.png" class="mr-3" alt=""> En</a>
+						</li>
+						<li>
+							<a href="&lang=uz" class="black-text">
+							<img width="20" src="img/langs/uz.png" class="mr-3" alt=""> Uz</a>
+						</li>
+					</form>
 				</ul>
 			</li>
 		</ul>
@@ -100,13 +98,13 @@ while ($catsData = mysqli_fetch_assoc($categories)) {
 		</div>
 	</li>
 	<li class="waves-effect w-100">
-        <a href="/?lang=<?= $_GET['lang']?>"><i class="material-icons">home</i><?= $home?></a>
+        <a href="/?>"><i class="material-icons">home</i><?= $home?></a>
 	</li><br>
 	<li class="waves-effect w-100">
-        <a href="about.php?lang=<?= $_GET['lang']?>"><i class="material-icons">account_circle</i><?= $about?></a>
+        <a href="about.php"><i class="material-icons">account_circle</i><?= $about?></a>
 	</li><br>
 	<li class="waves-effect w-100">
-        <a href="contact.php?lang=<?= $_GET['lang']?>"><i class="material-icons">phone</i><?= $contact?></a>
+        <a href="contact.php"><i class="material-icons">phone</i><?= $contact?></a>
 	</li><br>
 	<li class="w-100">
 		<a href="" class="dropdown-trigger" data-target="lang2">
@@ -168,7 +166,7 @@ while ($catsData = mysqli_fetch_assoc($categories)) {
 <!-- search -->
 <nav class="amber search">
 	<div class="nav-wrapper">
-		<form action="search.php?lang=<?= $_GET['lang']?>" method="get">
+		<form action="search.php?>" method="get">
 			<div class="input-field">
 				<input id="search" name="search" type="search" required style placeholder="<?= $searchPlaceholder?>">
 				<label class="label-icon" for="search">

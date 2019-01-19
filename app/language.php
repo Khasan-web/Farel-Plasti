@@ -4,7 +4,7 @@
 
 if (!isset($_GET['lang'])) {
     if (!isset($_COOKIE['lang'])) {
-        $_GET['lang'] = 'en';
+        $_COOKIE['lang'] = 'en';
     }
 }
 
@@ -27,7 +27,7 @@ if ($_GET['lang'] != 'ru') {
 
 // english
 
-if ($_GET['lang'] == 'en' || $_COOKIE['lang'] == 'en') {
+if ($_COOKIE['lang'] == 'en') {
 
     // common
     $qu = "som";
@@ -49,11 +49,14 @@ if ($_GET['lang'] == 'en' || $_COOKIE['lang'] == 'en') {
     $aboutTitle = "About Farel Plastic";
     $aboutCompany = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. <br> The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters";
 
+    // admin
+    $edit = "Edit";
+    $helperKeywords = "Name and word 'plastic' in 3 languages";
 }
 
 // russian
 
-if ($_GET['lang'] == 'ru' || $_COOKIE['lang'] == 'ru') {
+if ($_COOKIE['lang'] == 'ru') {
 
     // common
     $qu = "сум";
@@ -75,12 +78,15 @@ if ($_GET['lang'] == 'ru' || $_COOKIE['lang'] == 'ru') {
     $aboutTitle = "О Farel Plastic";
     $aboutCompany = "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. <br>Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона";
 
+    // admin
+    $edit = "Изменить";
+    $helperKeywords = "Имя и слово 'пластик' на 3 языках";
 
 }
 
 // uzbek
 
-if ($_GET['lang'] == 'uz' || $_COOKIE['lang'] == 'uz') {
+if ($_COOKIE['lang'] == 'uz') {
 
     // common
     $qu = "so'm";
@@ -102,7 +108,9 @@ if ($_GET['lang'] == 'uz' || $_COOKIE['lang'] == 'uz') {
     $aboutTitle = "Farel Plastic Haqidan";
     $aboutCompany = "Dizayn va kompozitsiyani baholash vaqtida o'qiladigan matn kontsentratsiyaga to'sqinlik qiladigan narsa aniqlangan. <br> Lore Ipsum ko'p yoki kamroq standart shablonni to'ldirishni ta'minlaganligi uchun ishlatiladi.";
 
-    // contact
+    // admin
+    $edit = "O‘zgartirish";
+    $helperKeywords = "Ism va so'z 'plastik' 3 tilda";
 
 }
 

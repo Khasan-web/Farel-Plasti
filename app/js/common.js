@@ -10,6 +10,7 @@ $(document).ready(function(){
         live:         true        // default
       }
     )
+    $('textarea#description').characterCounter();
     wow.init();
 
     var sliderHeight;
@@ -51,12 +52,9 @@ $(document).ready(function(){
         $(parents[1]).find('.material-placeholder img').attr('src', $(this).find('img').attr('src'));
     });
 
-    function SetCookie(c_name,value,expiredays)
-    {
-        var exdate = new Date()
-        exdate.setDate(exdate.getDate() + expiredays)
-        document.cookie = c_name + "=" + escape(value) + ((expiredays==null) ? "" : ";expires=" + exdate.toGMTString())
-        location.reload()
+    function reload() {
+        location.reload();
+        return false;
     }
 
 });
