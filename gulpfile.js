@@ -92,4 +92,7 @@ gulp.task('build', ['clean', 'img', 'scripts', 'sass'], function() {
     var buildPhp = gulp.src('app/**/*.php')
     .pipe(gulp.dest('dist'));
 
+    var htaccess = gulp.src('app/**/*.htaccess')
+    .pipe(gulp.dest('dist'));
+
 });

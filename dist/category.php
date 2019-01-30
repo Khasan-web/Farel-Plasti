@@ -1,9 +1,13 @@
+<?php require "includes/cookie.php"?>
 <!DOCTYPE html>
-<html lang="<?= $_GET['lang']?>">
-
+<html lang="<?= $activeLang?>">
 <head>
 	<?php require "includes/head.php";?>
-    <title>Home | Farel Plastic</title>
+    <?php 
+        $cat = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `category_$activeLang` WHERE `id` = " . $_GET['category']));
+        $title = $cat['name'];
+    ?>
+	<title><?= $title?> | Farel Plastic</title>
     <style>
         .indicators {
             display: none;
@@ -14,34 +18,35 @@
 <body>
     <?php require "includes/navbar.php";?>
 
-    <!-- Get the category -->
     <?php
-        $category = mysqli_query($con, "SELECT * FROM `category_" . $activeLang . "` WHERE `id` = " . $_GET['category']);
-        $cat = mysqli_fetch_assoc($category);
-    ?>
-
-    <!-- Get products-->
-    <?php
-        $products = mysqli_query($con, "SELECT * FROM `product_" . $activeLang . "` WHERE `category_id` = " . $cat['id']);
+        // get products
+        $products = mysqli_query($con, "SELECT * FROM `product_" . $activeLang . "` WHERE `category_id` = " . $_GET['category']);
 
         $prodArr = array();
         while ($prodData = mysqli_fetch_assoc($products)) {
             $prodArr[] = $prodData;
         }
     ?>
+    <?php
+        // get category
+        foreach ($catArr as $cat) {
+            if ($cat['id'] == $_GET['category']) {
+                $category = $cat;
+            }
+        }
+    ?>
 
     <div class="slider">
 		<ul class="slides center-align z-depth-1">
-			<li class="">
+            <li class="">
 				<div class="row">
-					<div class="col l8 m12 hide-on-small-and-down">
-						<img class="wow slideInLeft" src="img/home/slider/salat.jpg" alt="">
+					<div class="col l8 m12 p-0">
+						<img src="img/home/slider/<?= $category['img']?>" alt="" class="slideImg">
 					</div>
 					<div class="col l4 m12 s12 content amber">
-						<h2 class="white-text"><?= $cat['name']?></h2>
-						<p class="white-text"><?= $indexCard1?></p>
-						<p class="white-text"><?= $cat['description']?></p>
-						<a href="#products" class="btn rounded red waves-effect see-products">See products!</a>
+						<h3 class="white-text"><?= $category['name']?></h3>
+						<p class="white-text"><?= $category['description']?></p>
+						<a href="#products" class="btn rounded red waves-effect see-products"><?= $seeProd[$activeLang]?>!</a>
 					</div>
 				</div>
 			</li>

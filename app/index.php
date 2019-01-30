@@ -1,10 +1,10 @@
 <?php require "includes/cookie.php"?>
 <!DOCTYPE html>
-<html lang="<?= $_GET['lang']?>">
-
+<html lang="<?= $activeLang?>">
+<?php $title = $home[$activeLang]?>
 <head>
 	<?php require "includes/head.php";?>
-	<title>Home | Farel Plastic</title>
+	<title><?= $title?> | Farel Plastic</title>
 </head>
 
 <body>
@@ -31,44 +31,40 @@
 		<ul class="slides center-align z-depth-1">
 			<li class="">
 				<div class="row">
-					<div class="col l8 m12 hide-on-small-and-down">
-						<img class="wow slideInLeft" src="img/home/slider/salat.jpg" alt="">
+					<div class="col l8 m12 p-0">
+						<img src="img/home/slider/slide2.jpg" alt="" class="slideImg">
 					</div>
 					<div class="col l4 m12 s12 content amber">
-						<h2 class="white-text">Welcome on farelplastic.uz!</h2>
+						<h3 class="white-text"><?= $welcome[$activeLang]?></h3>
 						<p class="white-text">
-							<?= $indexCard1?>
+							<?= $welcomeInfo[$activeLang]?>
 						</p>
-						<p class="white-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-							Velit nostrum saepe amet, cum ipsa voluptas!</p>
-						<p class="white-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-						<button class="btn rounded red waves-effect">Get more!</button>
+						<a href="#about" class="btn rounded red waves-effect"><?= $getMore[$activeLang]?></a>
 					</div>
 				</div>
 			</li>
 			<li class="">
 				<div class="row">
-					<div class="col m8 hide-on-small-and-down">
-						<img class="wow slideInLeft" src="img/home/slider/salat.jpg" alt="">
+					<div class="col l8 m12 p-0">
+						<img src="img/home/slider/slide1.jpg" alt="" class="slideImg">
 					</div>
-					<div class="col m4 content red">
-						<h2 class="white-text">Full list of all products!</h2>
+					<div class="col l4 m12 s12 content red">
+						<h3 class="white-text">Full list of all products!</h3>
 						<p class="white-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, accusantium laudantium. Cumque</p>
-						<p class="white-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-						<button class="btn rounded amber waves-effect">Get more!</button>
+						<a href="#cat" class="btn rounded amber waves-effect"><?= $getMore[$activeLang]?></a>
 					</div>
 				</div>
 			</li>
 			<li class="">
 				<div class="row">
-					<div class="col m8 hide-on-small-and-down">
-						<img class="wow slideInLeft" src="img/home/slider/salat.jpg" alt="">
+					<div class="col l8 m12 p-0">
+						<img src="img/home/slider/slide3.jpg" alt="" class="slideImg">
 					</div>
-					<div class="col m4 content indigo darken-4">
-						<h2 class="white-text">15 years at the market!</h2>
+					<div class="col l4 m12 s12 content indigo">
+					<h3 class="white-text">15 years at the market!</h3>
 						<p class="white-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, accusantium laudantium. Cumque</p>
 						<p class="white-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-						<button class="btn rounded red waves-effect">Get more!</button>
+						<a href="/about" class="btn rounded red waves-effect"><?= $getMore[$activeLang]?></a>
 					</div>
 				</div>
 			</li>
@@ -84,9 +80,9 @@
 						<div class="card-content">
 							<i class="material-icons amber-text">add</i>
 							<span class="card-title">
-								<?= $homeCardTitle1?>
+								<?= $aboutCardTitle1[$activeLang]?>
 							</span>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+							<p><?= $aboutCard1[$activeLang]?></p>
 						</div>
 					</div>
 				</div>
@@ -95,9 +91,9 @@
 						<div class="card-content">
 							<i class="material-icons red-text">thumb_up_alt</i>
 							<span class="card-title">
-								<?= $homeCardTitle2?>
+								<?= $aboutCardTitle2[$activeLang]?>
 							</span>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+							<p><?= $aboutCard2[$activeLang]?></p>
 						</div>
 					</div>
 				</div>
@@ -106,9 +102,9 @@
 						<div class="card-content">
 							<i class="material-icons amber-text">layers</i>
 							<span class="card-title">
-								<?= $homeCardTitle3?>
+								<?= $aboutCardTitle3[$activeLang]?>
 							</span>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+							<p><?php echo $aboutCard3[$activeLang];?></p>
 						</div>
 					</div>
 				</div>
@@ -116,21 +112,26 @@
 		</div>
 	</section>
 
-	<section id="categories" class="mt-5">
+	<section id="cat" class="pt-5">
 		<div class="container">
-			<h2 class="main-title">Categories</h2>
-			<div class="underline red darken-2"></div>
-			<div class="row mt-5 pt-5">
-
+			<h2 class="main-title pt-5"><?= $catsTitle[$activeLang]?></h2>
+			<div class="underline red darken-2 mb-5"></div>
 			<?php
+			$i = 0;
 				foreach ($catArr as $cat) {
+					$i++;
+					if ($i % 3 == 0 || $i == 1) {
+						?>
+							<div class="row">
+						<?
+					}
 					?>
 						<div class="col s12 m4 category">
 							<div class="card z-depth-1 wow fadeInDown">
 								<div class="p-5">
 									<img src="img/home/categories/<?= $cat['illustration']?>" alt="" class="w-100">
 								</div>
-								<a href="category.php?category=<?= $cat['id']?>&lang=<?= $activeLang;?>" class="btn-floating halfway-fab waves-effect waves-light red btn-large">
+								<a href="category.php?category=<?= $cat['id']?>" class="btn-floating halfway-fab waves-effect waves-light red btn-large">
 									<i class="material-icons">add</i>
 								</a>
 								<div class="card-content">
@@ -140,6 +141,11 @@
 							</div>
 						</div>
 					<?
+					if ($i == 3) {
+						?>
+							</div>
+						<?
+					}
 				}
 			?>
 
@@ -149,7 +155,7 @@
 
 	<section id="features-items" class="mt-5">
 		<div class="container">
-			<h2 class="main-title">Popular products</h2>
+			<h2 class="main-title"><?= $popProdTitle[$activeLang]?></h2>
 			<div class="underline red darken-2 mb-5 center-align"></div>
 
 			<!-- Show products -->
@@ -201,11 +207,50 @@
 
 	<section id="partners" class="mt-5">
 		<div class="container">
-			<h2 class="main-title">Our Partners</h2>
+			<h2 class="main-title"><?= $partnersTitle[$activeLang]?></h2>
 			<div class="underline red darken-2"></div>
-
-
-
+			<div class="row my-5">
+				<div class="col s6 m3">
+					<div class="card z-depth-1 wow fadeInDown">
+						<div class="p-5">
+							<img src="img/logo.png" alt="" class="w-100">
+						</div>
+						<div class="card-content center-align">
+							<span class="card-title">Partner Name</span>
+						</div>
+					</div>
+				</div>
+				<div class="col s6 m3">
+					<div class="card z-depth-1 wow fadeInDown">
+						<div class="p-5">
+							<img src="img/logo.png" alt="" class="w-100">
+						</div>
+						<div class="card-content center-align">
+							<span class="card-title">Partner Name</span>
+						</div>
+					</div>
+				</div>
+				<div class="col s6 m3">
+					<div class="card z-depth-1 wow fadeInDown">
+						<div class="p-5">
+							<img src="img/logo.png" alt="" class="w-100">
+						</div>
+						<div class="card-content center-align">
+							<span class="card-title">Partner Name</span>
+						</div>
+					</div>
+				</div>
+				<div class="col s6 m3">
+					<div class="card z-depth-1 wow fadeInDown">
+						<div class="p-5">
+							<img src="img/logo.png" alt="" class="w-100">
+						</div>
+						<div class="card-content center-align">
+							<span class="card-title">Partner Name</span>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 

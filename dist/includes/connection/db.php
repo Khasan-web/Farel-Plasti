@@ -8,4 +8,6 @@
         exit();
     }
 
+    $con->set_charset('utf-8');
+
 ?>

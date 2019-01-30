@@ -10,16 +10,27 @@ $(document).ready(function(){
         live:         true        // default
       }
     )
+    $('textarea#description').characterCounter();
     wow.init();
 
     var sliderHeight;
-    if ($(window).width() <= 600) {
-        sliderHeight = 500
+    if ($(window).width() <= 992) {
+        sliderHeight = 800
     }
+    if ($(window).width() <= 768) {
+        $('.slideImg').css('width', $(window).width() + 'px');
+    }
+    var height = $(window).height() - 50;
+    console.log(height);
 
-    if ($(window).width() > 600) {
-        sliderHeight = 720
+    if ($(window).width() > 992) {
+        sliderHeight = height
     }
+    if ($(window).width() > 1800) {
+        var height = $(window).height() - 200;
+        sliderHeight = height
+    }
+    $('.slideImg').css('height', '' + height + 'px');
 
     $('.slider').slider(
         {
@@ -46,17 +57,32 @@ $(document).ready(function(){
         }
     });
 
-    $('.option').click(function(){
+    $('.option').click(function() {
         parents = $(this).parents();
         $(parents[1]).find('.material-placeholder img').attr('src', $(this).find('img').attr('src'));
     });
 
-    function SetCookie(c_name,value,expiredays)
-    {
-        var exdate = new Date()
-        exdate.setDate(exdate.getDate() + expiredays)
-        document.cookie = c_name + "=" + escape(value) + ((expiredays==null) ? "" : ";expires=" + exdate.toGMTString())
-        location.reload()
-    }
+    $('.close-alert').click(function() {
+        var parent = $(this).parent();
+        parent.fadeOut(100);
+    });
 
+    $("a[href^='#']").click(function(e) {
+        e.preventDefault();
+        
+        var position = $($(this).attr("href")).offset().top;
+    
+        $("body, html").animate({
+            scrollTop: position
+        }, 500 );
+    });
+
+});
+
+$(document).ready(function(){
+    setTimeout(() => {
+        $('body').css({'overflow': 'visible'});
+        $('body').fadeIn(2000);
+        $('#loader').fadeOut(0);
+    }, 200);
 });

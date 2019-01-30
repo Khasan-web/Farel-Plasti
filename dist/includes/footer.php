@@ -2,32 +2,31 @@
 	<div class="container">
 		<div class="row">
 			<div class="col l6 s12">
-				<h5 class="white-text">Footer Content</h5>
-				<p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+				<h5 class="white-text">Farel Plastic</h5>
+				<p class="grey-text text-lighten-4"><?= $welcomeInfo[$activeLang]?></p>
 			</div>
 			<div class="col l4 offset-l2 s12">
-				<h5 class="white-text">Links</h5>
+				<h5 class="white-text">Check also:</h5>
 				<ul>
-					<li>
-						<a class="grey-text text-lighten-3" href="#!">Link 1</a>
-					</li>
-					<li>
-						<a class="grey-text text-lighten-3" href="#!">Link 2</a>
-					</li>
-					<li>
-						<a class="grey-text text-lighten-3" href="#!">Link 3</a>
-					</li>
-					<li>
-						<a class="grey-text text-lighten-3" href="#!">Link 4</a>
-					</li>
+				<?php
+					foreach ($catArr as $cat) {
+						?>
+							<div class="col s12 p-0">
+								<li class="py-2">
+									<a href="category?category=<?= $cat['id']?>" class="white-text"><?= $cat['name']?></a>
+								</li>
+							</div>
+						<?
+					}
+				?>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<div class="footer-copyright">
 		<div class="container">
-			© 2014 Copyright Text
-			<a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+			www.farelplastic.uz
+			<a class="grey-text text-lighten-4 right" href="/_login"><?= $admin_title[$activeLang]?></a>
 		</div>
 	</div>
 </footer>

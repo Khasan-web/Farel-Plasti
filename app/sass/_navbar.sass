@@ -15,9 +15,21 @@ nav
     position: fixed
     width: 100%
     color: $text
+    .chip
+        background: transparent
+        border-radius: 0
+        border-left: 1px solid #fff
+        color: #fff
+        margin-left: 100px
 
 .cats-item
     background: #F44336
+
+#lang
+    a
+        height: 50px
+        button
+            height: 50px
 
 .brand-logo
     line-height: 70px
@@ -48,7 +60,34 @@ nav
 
 .drag-target
     width: 25px
+    display: none
+
+#loader
+    width: 100%
+    height: 100vh
+    position: absolute
+    z-index: 1000
+    background: #fff
+    position: fixed
+    display: block
+    .preloader-wrapper
+        position: relative
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+    .preloader-wrapper.active
+        animation: none
+
+body
+    overflow: hidden
 
 @media (max-width: 768px) 
     .search
         top: 55px
+
+@media (max-width: 992px) 
+    nav
+        .chip
+            display: none
+    .drag-target
+        display: block

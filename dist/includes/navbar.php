@@ -1,20 +1,21 @@
-<!-- Getting categories -->
 <?php
-
-$categories = mysqli_query($con, "SELECT * FROM `category_" . $_GET['lang'] . "`");
-$catsArr = array();
-while ($catsData = mysqli_fetch_assoc($categories)) {
-	$catsArr[] = $catsData;
-}
-
+	// get categories for dropdown
+	$categories = mysqli_query($con, "SELECT * FROM `category_$activeLang`");
+	$catArr = array();
+	$count = 0;
+	while ($catsData = mysqli_fetch_assoc($categories)) {
+		$catArr[] = $catsData;
+		$count++;
+	}
 ?>
-
 <!-- navbar -->
 <nav class="amber px-2">
 	<div class="nav-wrapper">
 		<a href="/" class="brand-logo">
 			<img src="img/logo.png" alt="logo" width="70">
 		</a>
+		<div class="chip"><?= $title?>
+		</div>
 		<a href="#" data-target="nav-mobile" class="sidenav-trigger">
 			<i class="material-icons">menu</i>
         </a>
@@ -23,23 +24,23 @@ while ($catsData = mysqli_fetch_assoc($categories)) {
 		</a>
 		<ul class="right hide-on-med-and-down">
 			<li class="waves-effect">
-				<a href="/"><?= $home?></a>
+				<a href="/"><?= $home[$activeLang]?></a>
 			</li>
 			<li class="waves-effect">
-				<a href="/about.php"><?= $about?></a>
+				<a href="/about"><?= $about[$activeLang]?></a>
 			</li>
 			<li class="cats-item">
 				<a href="" class="dropdown-trigger" data-target="categories">
-					<?= $cats?>
+					<?= $cats[$activeLang]?>
 				</a>
 				<ul id="categories" class="dropdown-content categories-dropdown">
 					<div class="row mb-0">
 					<?php
-						foreach ($catsArr as $cat) {
+						foreach ($catArr as $cat) {
 							?>
 								<div class="col s12 p-0">
 									<li>
-										<a href="category.php?category=<?= $cat['id']?>" class="black-text"><?= $cat['name']?></a>
+										<a href="category?category=<?= $cat['id']?>" class="black-text"><?= $cat['name']?></a>
 									</li>
 								</div>
 							<?
@@ -49,7 +50,7 @@ while ($catsData = mysqli_fetch_assoc($categories)) {
 				</ul>
 			</li>
 			<li class="waves-effect">
-				<a href="/contact.php"><?= $contact?></a>
+				<a href="/contact"><?= $contact[$activeLang]?></a>
 			</li>
 			<li class="open-search waves-effect">
 				<a>
@@ -61,21 +62,26 @@ while ($catsData = mysqli_fetch_assoc($categories)) {
 					<i class="material-icons">language</i>
 				</a>
 				<ul id="lang" class="dropdown-content">
-					<li>
-						<a href="?lang=ru" class="black-text">
-							<img width="20" src="img/langs/ru.png" class="mr-3" alt=""> Ru
-						</a>
-					</li>
-					<li>
-						<a href="?lang=en" class="black-text">
-							<img width="20" src="img/langs/eng.png" class="mr-3" alt=""> En
-						</a>
-					</li>
-					<li>
-						<a href="?lang=uz" class="black-text">
-							<img width="20" src="img/langs/uz.png" class="mr-3" alt=""> Uz
-						</a>
-					</li>
+					<form action="" method="post">
+						<li class="valign-wrapper">
+							<a href="" class="black-text p-0 w-100">
+								<button type="submit" name="ru" class="btn btn-flat language white w-100">
+								<img width="20" src="img/langs/ru.png" class="mr-3" alt=""> Ру</button>
+							</a>
+						</li>
+						<li class="valign-wrapper">
+							<a href="" class="black-text p-0 w-100">
+								<button type="submit" name="en" class="btn btn-flat language white w-100 waves-effect">
+								<img width="20" src="img/langs/eng.png" class="mr-3" alt=""> En</button>
+							</a>
+						</li>
+						<li class="valign-wrapper">
+							<a href="" class="black-text p-0 w-100">
+								<button type="submit" name="uz" class="btn btn-flat language white w-100">
+								<img width="20" src="img/langs/uz.png" class="mr-3" alt=""> Uz</button>
+							</a>
+						</li>
+					</form>
 				</ul>
 			</li>
 		</ul>
@@ -100,77 +106,66 @@ while ($catsData = mysqli_fetch_assoc($categories)) {
 		</div>
 	</li>
 	<li class="waves-effect w-100">
-        <a href="/?lang=<?= $_GET['lang']?>"><i class="material-icons">home</i><?= $home?></a>
+        <a href="/"><i class="material-icons">home</i><?= $home[$activeLang]?></a>
 	</li><br>
 	<li class="waves-effect w-100">
-        <a href="about.php?lang=<?= $_GET['lang']?>"><i class="material-icons">account_circle</i><?= $about?></a>
+        <a href="/about"><i class="material-icons">account_circle</i><?= $about[$activeLang]?></a>
 	</li><br>
 	<li class="waves-effect w-100">
-        <a href="contact.php?lang=<?= $_GET['lang']?>"><i class="material-icons">phone</i><?= $contact?></a>
+        <a href="/contact"><i class="material-icons">phone</i><?= $contact[$activeLang]?></a>
 	</li><br>
 	<li class="w-100">
 		<a href="" class="dropdown-trigger" data-target="lang2">
-			<i class="material-icons">language</i><?= $language?>
+			<i class="material-icons">language</i><?= $language[$activeLang]?>
 		</a>
 		<ul id="lang2" class="dropdown-content">
-			<li>
-				<a href="&lang=ru" class="black-text">
-					<img width="20" src="img/langs/ru.png" class="mr-3" alt=""> Ru</a>
-			</li>
-			<li>
-				<a href="&lang=en" class="black-text">
-					<img width="20" src="img/langs/eng.png" class="mr-3" alt=""> En</a>
-			</li>
-			<li>
-				<a href="&lang=uz" class="black-text">
-					<img width="20" src="img/langs/uz.png" class="mr-3" alt=""> Uz</a>
-			</li>
-		</ul>
-	</li>
-	<ul id="lang" class="dropdown-content">
-		<li>
-			<a href="&lang=ru" class="black-text">
-				<img width="20" src="img/langs/ru.png" class="mr-3" alt=""> Ru</a>
-		</li>
-		<li>
-			<a href="&lang=en" class="black-text">
-				<img width="20" src="img/langs/eng.png" class="mr-3" alt=""> En</a>
-		</li>
-		<li>
-			<a href="&lang=uz" class="black-text">
-				<img width="20" src="img/langs/uz.png" class="mr-3" alt=""> Uz</a>
-		</li>
-	</ul>
+					<form action="" method="post">
+						<li class="valign-wrapper">
+							<a href="" class="black-text p-0 w-100">
+								<button type="submit" name="ru" class="btn btn-flat language white w-100">
+								<img width="20" src="img/langs/ru.png" class="mr-3" alt=""> Ру</button>
+							</a>
+						</li>
+						<li class="valign-wrapper">
+							<a href="" class="black-text p-0 w-100">
+								<button type="submit" name="en" class="btn btn-flat language white w-100 waves-effect">
+								<img width="20" src="img/langs/eng.png" class="mr-3" alt=""> En</button>
+							</a>
+						</li>
+						<li class="valign-wrapper">
+							<a href="" class="black-text p-0 w-100">
+								<button type="submit" name="uz" class="btn btn-flat language white w-100">
+								<img width="20" src="img/langs/uz.png" class="mr-3" alt=""> Uz</button>
+							</a>
+						</li>
+					</form>
+				</ul>
 	</li>
 	<li>
 		<div class="divider"></div>
 	</li>
 	<li>
-		<a class="subheader"><?= $cats?></a>
+		<a class="subheader"><?= $cats[$activeLang]?></a>
 	</li>
-	<li>
-		<a href="#!">Category 1</a>
-	</li>
-	<li>
-		<a href="#!">Category 2</a>
-	</li>
-	<li>
-		<a href="#!">Category 3</a>
-	</li>
-	<li>
-		<a href="#!">Category 4</a>
-	</li>
-	<li>
-		<a href="#!">Category 5</a>
-	</li>
+	<?php
+		foreach ($catArr as $cat) {
+			?>
+				<div class="col s12 p-0">
+					<li>
+						<a href="category?category=<?= $cat['id']?>" class="black-text"><?= $cat['name']?></a>
+					</li>
+				</div>
+			<?
+		}
+	?>
 </ul>
 
 <!-- search -->
 <nav class="amber search">
 	<div class="nav-wrapper">
-		<form action="search.php?lang=<?= $_GET['lang']?>" method="get">
+		<form action="search?>" method="get">
 			<div class="input-field">
-				<input id="search" name="search" type="search" required style placeholder="<?= $searchPlaceholder?>">
+				<input id="search" name="search" type="search" required style placeholder="<?= $searchPlaceholder[$activeLang]?>">
 				<label class="label-icon" for="search">
 					<i class="material-icons">search</i>
 				</label>
@@ -179,3 +174,19 @@ while ($catsData = mysqli_fetch_assoc($categories)) {
 		</form>
 	</div>
 </nav>
+
+
+<!-- loader -->
+<section id="loader">
+	<div class="preloader-wrapper big active">
+		<div class="spinner-layer spinner-yellow-only">
+		<div class="circle-clipper left">
+			<div class="circle"></div>
+		</div><div class="gap-patch">
+			<div class="circle"></div>
+		</div><div class="circle-clipper right">
+			<div class="circle"></div>
+		</div>
+		</div>
+	</div>
+</section>

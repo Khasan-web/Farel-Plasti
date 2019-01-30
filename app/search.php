@@ -1,10 +1,11 @@
+<?php require "includes/cookie.php"?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= $activeLang?>">
 
 <head>
 	<?php require "includes/head.php";?>
-    <!-- getting search data -->
     <?php 
+    // get search data
     $search = htmlspecialchars($_GET['search']);
     $split = str_split($search);
     foreach($split as $char) {
@@ -37,10 +38,10 @@
     while ($catsData = mysqli_fetch_assoc($categories)) {
         $catArr[] = $catsData;
     }
-    
+
+    $title = $search_title[$activeLang] . " - " . $searchStr;
     ?>
-	<title>
-		<?= $searchStr?> | Farel Plastic</title>
+	<title><?= $title?> | Farel Plastic</title>
 </head>
 
 
@@ -69,7 +70,7 @@
                                         <a href="product.php?id=<?= $product['id']?>">
                                             <div class="card z-depth-1 waves-effect">
                                                 <div class="p-5 cardImg pb-0 valign-wrapper">
-                                                <img src="img/products/<?php $preview = explode(", ", $product['imgs']);echo $preview[0];?>" alt="" class="w-100">
+                                                    <img src="img/products/<?php $preview = explode(", ", $product['imgs']);echo $preview[0];?>" alt="" class="w-100">
                                                 </div>
                                                 <div class="card-content">
                                                     <span class="card-title name mb-0">
